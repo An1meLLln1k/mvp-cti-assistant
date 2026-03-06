@@ -1,0 +1,15 @@
+{"id": "case_001", "query": "CVE-2026-2441", "expected_cve_ids": ["CVE-2026-2441"]}
+{"id": "case_002", "query": "что за CVE-2026-2441 и что делать", "expected_cve_ids": ["CVE-2026-2441"]}
+{"id": "case_003", "query": "дай краткое резюме по CVE-2026-2441", "expected_cve_ids": ["CVE-2026-2441"]}
+{"id": "case_004", "query": "CVE-2026-1731", "expected_cve_ids": ["CVE-2026-1731"]}
+{"id": "case_005", "query": "что за CVE-2026-1731 и что делать", "expected_cve_ids": ["CVE-2026-1731"]}
+{"id": "case_006", "query": "дай краткое резюме по CVE-2026-1731", "expected_cve_ids": ["CVE-2026-1731"]}
+{"id": "case_007", "query": "CVE-2026-20700", "expected_cve_ids": ["CVE-2026-20700"]}
+{"id": "case_008", "query": "что за CVE-2026-20700 и что делать", "expected_cve_ids": ["CVE-2026-20700"]}
+{"id": "case_009", "query": "дай краткое резюме по CVE-2026-20700", "expected_cve_ids": ["CVE-2026-20700"]}
+{"id": "case_010", "query": "CVE-2024-43468", "expected_cve_ids": ["CVE-2024-43468"]}
+{"id": "case_011", "query": "что за CVE-2024-43468 и что делать", "expected_cve_ids": ["CVE-2024-43468"]}
+{"id": "case_012", "query": "дай краткое резюме по CVE-2024-43468", "expected_cve_ids": ["CVE-2024-43468"]}
+{"id": "case_013", "query": "CVE-2025-15556", "expected_cve_ids": ["CVE-2025-15556"]}
+{"id": "case_014", "query": "что за CVE-2025-15556 и что делать", "expected_cve_ids": ["CVE-2025-15556"]}
+{"id": "case_015", "query": "дай краткое резюме по CVE-2025-15556", "expected_cve_ids": ["CVE-2025-15556"]}

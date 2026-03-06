@@ -1,0 +1,33 @@
+# python junk
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+
+# venv
+.venv/
+venv/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+
+# secrets
+.env
+.env.*
+
+# logs / outputs
+runs/
+*.log
+
+# big/raw data (оставляем только маленькие примеры)
+dataset/*.json
+dataset/*.jsonl
+!dataset/benchmark_v0.jsonl
+!dataset/dataset_v1.jsonl
+!dataset/cwe_hierarchy.json
+
+# keep the CWE XML optional (можно закоммитить, но он может быть крупным)
+# dataset/cwec_*.xml
