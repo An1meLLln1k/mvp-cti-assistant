@@ -1,7 +1,6 @@
 import sys
 from pathlib import Path
 
-# чтобы можно было импортировать app/* при запуске python tools/eval_retrieval.py
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
@@ -13,12 +12,11 @@ from app.io.dataset_loader import load_jsonl
 from app.retrieval.simple_retriever import retrieve
 
 
-def mrr(rank: int | None) -> float:
+def reciprocal_rank(rank):
     return 0.0 if rank is None else 1.0 / rank
 
 
-def main() -> None:
-    # 1) найти бенчмарк
+def main():
     candidates = [
         ROOT / "dataset" / "benchmark_v0.jsonl",
         ROOT / "dataset" / "eval_cases.jsonl",
@@ -34,10 +32,8 @@ def main() -> None:
     print(f"[INFO] BENCH: {bench_path}")
     print(f"[INFO] DATASET: {DATASET_PATH}")
 
-    # 2) загрузить датасет
     records = load_jsonl(Path(DATASET_PATH))
 
-    # 3) загрузить кейсы
     cases = []
     with bench_path.open("r", encoding="utf-8") as f:
         for line in f:
@@ -49,52 +45,81 @@ def main() -> None:
     if not cases:
         raise ValueError(f"Бенчмарк пустой: {bench_path}")
 
-    # 4) прогон
     K = 3
-    hits_at_k = 0
-    mrr_sum = 0.0
+
+    pos_cases = 0
+    pos_hits = 0
+    rr_sum = 0.0
+
+    neg_cases = 0
+    neg_correct = 0
+
     per_case = []
 
     for c in cases:
         q = c.get("query", "")
-        expected = set(x.upper() for x in c.get("expected_cve_ids", []))
+        expected = [x.upper() for x in c.get("expected_cve_ids", [])]
 
         got = retrieve(q, records, top_k=K)
         got_ids = [(r.get("cve_id") or "").upper() for _, r in got]
 
-        rank = None
-        for i, cid in enumerate(got_ids, start=1):
-            if cid in expected:
-                rank = i
-                break
+        if expected:
+            pos_cases += 1
 
-        hit = rank is not None
-        hits_at_k += 1 if hit else 0
-        mrr_sum += mrr(rank)
+            rank = None
+            for i, cid in enumerate(got_ids, start=1):
+                if cid in expected:
+                    rank = i
+                    break
 
-        per_case.append(
-            {
-                "id": c.get("id"),
-                "query": q,
-                "expected": list(expected),
-                "got": got_ids,
-                "hit@k": hit,
-                "rank": rank,
-            }
-        )
+            hit = rank is not None
+            if hit:
+                pos_hits += 1
+            rr_sum += reciprocal_rank(rank)
 
-    recall_k = hits_at_k / max(1, len(cases))
-    mrr_val = mrr_sum / max(1, len(cases))
+            per_case.append(
+                {
+                    "id": c.get("id"),
+                    "type": "positive",
+                    "query": q,
+                    "expected": expected,
+                    "got": got_ids,
+                    "hit@k": hit,
+                    "rank": rank,
+                }
+            )
+        else:
+            neg_cases += 1
+            no_hits = len(got_ids) == 0
+            if no_hits:
+                neg_correct += 1
 
-    # 5) сохранить отчёт
+            per_case.append(
+                {
+                    "id": c.get("id"),
+                    "type": "negative",
+                    "query": q,
+                    "expected": [],
+                    "got": got_ids,
+                    "no_hits": no_hits,
+                }
+            )
+
+    recall_k = pos_hits / pos_cases if pos_cases > 0 else 0.0
+    mrr = rr_sum / pos_cases if pos_cases > 0 else 0.0
+    no_hit_accuracy = neg_correct / neg_cases if neg_cases > 0 else 0.0
+
     report = {
         "ts": datetime.now().isoformat(timespec="seconds"),
         "dataset": str(DATASET_PATH),
         "benchmark": str(bench_path),
         "K": K,
         "n_cases": len(cases),
+        "positive_cases": pos_cases,
+        "negative_cases": neg_cases,
         "recall@K": recall_k,
-        "mrr": mrr_val,
+        "mrr": mrr,
+        "no_hit_accuracy": no_hit_accuracy,
         "cases": per_case,
     }
 
@@ -103,8 +128,11 @@ def main() -> None:
     out_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(f"n_cases: {len(cases)}")
+    print(f"positive_cases: {pos_cases}")
+    print(f"negative_cases: {neg_cases}")
     print(f"Recall@{K}: {recall_k:.3f}")
-    print(f"MRR: {mrr_val:.3f}")
+    print(f"MRR: {mrr:.3f}")
+    print(f"No-hit accuracy: {no_hit_accuracy:.3f}")
     print(f"[OK] report saved: {out_path}")
 
 

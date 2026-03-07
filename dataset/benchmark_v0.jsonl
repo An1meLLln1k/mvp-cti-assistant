@@ -13,3 +13,15 @@
 {"id": "case_013", "query": "CVE-2025-15556", "expected_cve_ids": ["CVE-2025-15556"]}
 {"id": "case_014", "query": "что за CVE-2025-15556 и что делать", "expected_cve_ids": ["CVE-2025-15556"]}
 {"id": "case_015", "query": "дай краткое резюме по CVE-2025-15556", "expected_cve_ids": ["CVE-2025-15556"]}
+{"id":"case_016","query":"расскажи про chromium use-after-free","expected_cve_ids":["CVE-2026-2441"]}
+{"id":"case_017","query":"heap corruption через crafted html page","expected_cve_ids":["CVE-2026-2441"]}
+{"id":"case_018","query":"уязвимость в google chromium css","expected_cve_ids":["CVE-2026-2441"]}
+{"id":"case_019","query":"что за chromium css use-after-free","expected_cve_ids":["CVE-2026-2441"]}
+{"id":"case_020","query":"что известно про CVE-2026-2441 в chromium","expected_cve_ids":["CVE-2026-2441"]}
+{"id":"case_021","query":"use-after-free в браузере chromium","expected_cve_ids":["CVE-2026-2441"]}
+{"id":"case_022","query":"CVE-1999-0000","expected_cve_ids":[]}
+{"id":"case_023","query":"что за CVE-1999-0000 и что делать","expected_cve_ids":[]}
+{"id":"case_024","query":"уязвимость в oracle weblogic remote deserialization 2017","expected_cve_ids":[]}
+{"id":"case_025","query":"sql injection в старом wordpress plugin","expected_cve_ids":[]}
+{"id":"case_026","query":"какая-то несуществующая уязвимость blabla-1234","expected_cve_ids":[]}
+{"id":"case_027","query":"ничего не найдено по imaginary cve","expected_cve_ids":[]}
