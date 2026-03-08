@@ -1,33 +1,52 @@
-# python junk
+# Python cache / build junk
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
 .ipynb_checkpoints/
 
-# venv
+# Virtual environments
 .venv/
 venv/
+env/
+ENV/
 
-# OS / IDE
+# IDE / OS garbage
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db
-.vscode/
+desktop.ini
 
-# secrets
+# Secrets / local config
 .env
 .env.*
+*.secret
+*.secrets
 
-# logs / outputs
+# Logs / runtime outputs
 runs/
 *.log
 
-# big/raw data (оставляем только маленькие примеры)
+# Ignore heavy data by default
+dataset/raw/
 dataset/*.json
 dataset/*.jsonl
+dataset/*.csv
+dataset/*.xml
+
+# Keep required lightweight project artifacts
 !dataset/benchmark_v0.jsonl
 !dataset/dataset_v1.jsonl
 !dataset/cwe_hierarchy.json
+!dataset/cwec_v4.19.1.xml
 
-# keep the CWE XML optional (можно закоммитить, но он может быть крупным)
-# dataset/cwec_*.xml
+# Keep docs / plans
+!dataset/benchmark_plan.md
+!dataset/dataset_plan.md
+!dataset/dataset_plan.md.txt
+!dataset/full_benchmark.md
+
+# Repo docs
+!README.md
+!PROGRESS.md
+!model.ipynb
