@@ -1,0 +1,815 @@
+[
+  {
+    "model": "qwen2.5:1.5b",
+    "case_id": "exact_1",
+    "scenario": "exact_cve",
+    "query": "CVE-2026-1731",
+    "expected_type": "hit",
+    "duration_sec": 86.197,
+    "retrieval_found": true,
+    "top1_score": 100.0,
+    "top1_cve_id": "CVE-2026-1731",
+    "top1_kev": true,
+    "top1_cwe_primary": "CWE-78",
+    "top1_cwe_top": "CWE-707",
+    "summary": "Проблема связана с пред-authenticated ретранзиторным кодом выполнения в BeyondTrust Remote Support (RS) и некоторых старых версиях Privileged Remote Access (PRA). Уязвимость позволяет независимому удаленному атакеру выполнять команды операционной системы с правами пользователя.",
+    "actions": [
+      "отключить или удалить старые версии Privileged Remote Access (PRA)",
+      "Повысить приоритет устранения, так как уязвимость входит в каталог KEV.",
+      "Проверить наличие патча или обновления у вендора."
+    ],
+    "actions_count": 3,
+    "kev": true,
+    "grounded": true,
+    "cwe_primary": "CWE-78",
+    "cwe_top": "CWE-707",
+    "references": [
+      "https://beyondtrustcorp.service-now.com/csm?id=csm_kb_article&sysparm_article=KB0023293",
+      "https://www.beyondtrust.com/trust-center/security-advisories/bt26-02",
+      "https://github.com/win3zz/CVE-2026-1731",
+      "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2026-1731",
+      "https://www.greynoise.io/blog/reconnaissance-beyondtrust-rce-cve-2026-1731"
+    ],
+    "references_count": 5,
+    "notes": "Данный уязвимость требует немедленного обновления всех установленных версий BeyondTrust RS и PRA до последних актуальных. Необходимо также удалить старые версии Privileged Remote Access (PRA) для предотвращения возможной атаки.",
+    "final_answer": {
+      "summary": "Проблема связана с пред-authenticated ретранзиторным кодом выполнения в BeyondTrust Remote Support (RS) и некоторых старых версиях Privileged Remote Access (PRA). Уязвимость позволяет независимому удаленному атакеру выполнять команды операционной системы с правами пользователя.",
+      "actions": [
+        "отключить или удалить старые версии Privileged Remote Access (PRA)",
+        "Повысить приоритет устранения, так как уязвимость входит в каталог KEV.",
+        "Проверить наличие патча или обновления у вендора."
+      ],
+      "kev": true,
+      "cwe": {
+        "primary": "CWE-78",
+        "top": "CWE-707"
+      },
+      "references": [
+        "https://beyondtrustcorp.service-now.com/csm?id=csm_kb_article&sysparm_article=KB0023293",
+        "https://www.beyondtrust.com/trust-center/security-advisories/bt26-02",
+        "https://github.com/win3zz/CVE-2026-1731",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2026-1731",
+        "https://www.greynoise.io/blog/reconnaissance-beyondtrust-rce-cve-2026-1731"
+      ],
+      "grounded": true,
+      "notes": "Данный уязвимость требует немедленного обновления всех установленных версий BeyondTrust RS и PRA до последних актуальных. Необходимо также удалить старые версии Privileged Remote Access (PRA) для предотвращения возможной атаки."
+    },
+    "fallback_answer": {
+      "query": "CVE-2026-1731",
+      "status": "ok",
+      "summary": "Найден 1 релевантный кандидат: CVE-2026-1731. Retrieval-only baseline без генерации.",
+      "actions": [
+        "Проверить наличие патча или обновления у вендора.",
+        "Определить, используется ли уязвимый компонент в вашей инфраструктуре.",
+        "Если уязвимость входит в KEV, повысить приоритет устранения."
+      ],
+      "items": [
+        {
+          "cve_id": "CVE-2026-1731",
+          "score": 100.0,
+          "description": "BeyondTrust Remote Support (RS) and certain older versions of Privileged Remote Access (PRA) contain a critical pre-authentication remote code execution vulnerability. By sending specially crafted requests, an unauthenticated remote attacker may be able to execute operating system commands in the context of the site user.",
+          "published_date": "2026-02-06T22:16:11.020",
+          "kev": true,
+          "cwe": {
+            "primary": "CWE-78",
+            "top": "CWE-707",
+            "parent": "CWE-77",
+            "depth": 3,
+            "path": "CWE-707 > CWE-74 > CWE-77 > CWE-78",
+            "is_leaf": true
+          },
+          "references": [
+            "https://beyondtrustcorp.service-now.com/csm?id=csm_kb_article&sysparm_article=KB0023293",
+            "https://www.beyondtrust.com/trust-center/security-advisories/bt26-02",
+            "https://github.com/win3zz/CVE-2026-1731",
+            "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2026-1731",
+            "https://www.greynoise.io/blog/reconnaissance-beyondtrust-rce-cve-2026-1731"
+          ]
+        }
+      ]
+    },
+    "raw_llm_answer": {
+      "summary": "Проблема связана с пред-authenticated ретранзиторным кодом выполнения в BeyondTrust Remote Support (RS) и некоторых старых версиях Privileged Remote Access (PRA). Уязвимость позволяет независимому удаленному атакеру выполнять команды операционной системы с правами пользователя.",
+      "actions": [
+        "обновить все установленные версии BeyondTrust RS и PRA до последних актуальных",
+        "отключить или удалить старые версии Privileged Remote Access (PRA)",
+        "использовать только проверенные и обновленные ресурсы для работы с BeyondTrust"
+      ],
+      "kev": true,
+      "cwe": {
+        "primary": "CWE-78",
+        "top": "CWE-707"
+      },
+      "references": [
+        "https://beyondtrustcorp.service-now.com/csm?id=csm_kb_article&sysparm_article=KB0023293",
+        "https://www.beyondtrust.com/trust-center/security-advisories/bt26-02",
+        "https://github.com/win3zz/CVE-2026-1731",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2026-1731",
+        "https://www.greynoise.io/blog/reconnaissance-beyondtrust-rce-cve-2026-1731"
+      ],
+      "grounded": true,
+      "notes": "Данный уязвимость требует немедленного обновления всех установленных версий BeyondTrust RS и PRA до последних актуальных. Необходимо также удалить старые версии Privileged Remote Access (PRA) для предотвращения возможной атаки."
+    },
+    "prompt": "Ты — интеллектуальный ассистент для первичного анализа уязвимостей.\n\nТебе даны:\n1) запрос пользователя;\n2) retrieval-контекст из локального корпуса.\n\nПравила:\n- Отвечай только на основе контекста ниже.\n- Ничего не выдумывай.\n- Не добавляй общие советы, если их нет в контексте.\n- Не упоминай антивирус, безопасные протоколы, шифрование, аутентификацию пользователей и другие общие меры, если они не следуют напрямую из контекста.\n- Пиши строго на русском языке.\n- Идентификаторы CVE, CWE и URL не переводить.\n- В поле cwe.top указывай только верхний CWE-идентификатор, например \"CWE-707\".\n- Не записывай в cwe.top полный путь вида \"CWE-707 > CWE-74 > ...\".\n- Если контекста недостаточно, честно укажи это в notes.\n- Не пиши в notes технические комментарии про нормализацию, генерацию или внутреннюю обработку.\n- Если данных в контексте мало, не додумывай детали, а формулируй ответ консервативно.\n\nЗапрос пользователя:\nCVE-2026-1731\n\nКонтекст:\n[DOCUMENT]\nscore: 100.000\ncve_id: CVE-2026-1731\npublished_date: 2026-02-06T22:16:11.020\nkev: True\ncwe_primary_id: CWE-78\ncwe_top_id: CWE-707\ncwe_path: CWE-707 > CWE-74 > CWE-77 > CWE-78\ndescription: BeyondTrust Remote Support (RS) and certain older versions of Privileged Remote Access (PRA) contain a critical pre-authentication remote code execution vulnerability. By sending specially crafted requests, an unauthenticated remote attacker may be able to execute operating system commands in the context of the site user.\nreferences:\n- https://beyondtrustcorp.service-now.com/csm?id=csm_kb_article&sysparm_article=KB0023293\n- https://www.beyondtrust.com/trust-center/security-advisories/bt26-02\n- https://github.com/win3zz/CVE-2026-1731\n- https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2026-1731\n- https://www.greynoise.io/blog/reconnaissance-beyondtrust-rce-cve-2026-1731\n[/DOCUMENT]\n\nВерни строго JSON-объект такого вида:\n{\n  \"summary\": \"1-2 предложения по сути уязвимости\",\n  \"actions\": [\n    \"конкретное действие 1\",\n    \"конкретное действие 2\",\n    \"конкретное действие 3\"\n  ],\n  \"kev\": true,\n  \"cwe\": {\n    \"primary\": \"CWE-...\",\n    \"top\": \"CWE-...\"\n  },\n  \"references\": [\"url1\", \"url2\"],\n  \"grounded\": true,\n  \"notes\": \"краткая пометка, если данных мало или есть неоднозначность\"\n}\n\nТребования:\n- summary: кратко и по делу;\n- actions: только практические и уместные действия;\n- references: брать только из контекста;\n- grounded=true только если ответ реально опирается на контекст;\n- notes не должны быть служебной отпиской и не должны дублировать summary дословно.\n"
+  },
+  {
+    "model": "qwen2.5:1.5b",
+    "case_id": "exact_2",
+    "scenario": "exact_cve",
+    "query": "CVE-2026-0021",
+    "expected_type": "hit",
+    "duration_sec": 43.623,
+    "retrieval_found": true,
+    "top1_score": 100.0,
+    "top1_cve_id": "CVE-2026-0021",
+    "top1_kev": false,
+    "top1_cwe_primary": "CWE-441",
+    "top1_cwe_top": "CWE-664",
+    "summary": "В AppInfoBase.java, в методе hasInteractAcrossUsersFullPermission, может произойти переполнение пользовательских прав с использованием недоступного ключа. Это может привести к местному повышению уровня доступа без дополнительных выполненных действий.",
+    "actions": [
+      "обновить и проверить конфигурации системы",
+      "исследовать все входящие данные для устранения возможной уязвимости",
+      "Проверить наличие патча или обновления у вендора."
+    ],
+    "actions_count": 3,
+    "kev": true,
+    "grounded": true,
+    "cwe_primary": "CWE-610",
+    "cwe_top": "CWE-664",
+    "references": [
+      "https://source.android.com/docs/security/bulletin/2026/2026-03-01"
+    ],
+    "references_count": 1,
+    "notes": "В контексте недостаточно данных для более точного анализа.",
+    "final_answer": {
+      "summary": "В AppInfoBase.java, в методе hasInteractAcrossUsersFullPermission, может произойти переполнение пользовательских прав с использованием недоступного ключа. Это может привести к местному повышению уровня доступа без дополнительных выполненных действий.",
+      "actions": [
+        "обновить и проверить конфигурации системы",
+        "исследовать все входящие данные для устранения возможной уязвимости",
+        "Проверить наличие патча или обновления у вендора."
+      ],
+      "kev": true,
+      "cwe": {
+        "primary": "CWE-610",
+        "top": "CWE-664"
+      },
+      "references": [
+        "https://source.android.com/docs/security/bulletin/2026/2026-03-01"
+      ],
+      "grounded": true,
+      "notes": "В контексте недостаточно данных для более точного анализа."
+    },
+    "fallback_answer": {
+      "query": "CVE-2026-0021",
+      "status": "ok",
+      "summary": "Найден 1 релевантный кандидат: CVE-2026-0021. Retrieval-only baseline без генерации.",
+      "actions": [
+        "Проверить наличие патча или обновления у вендора.",
+        "Определить, используется ли уязвимый компонент в вашей инфраструктуре.",
+        "Оценить внешнюю доступность уязвимого сервиса до устранения проблемы."
+      ],
+      "items": [
+        {
+          "cve_id": "CVE-2026-0021",
+          "score": 100.0,
+          "description": "In hasInteractAcrossUsersFullPermission of AppInfoBase.java, there is a possible cross-user permission bypass due to a confused deputy. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+          "published_date": "2026-03-02T19:16:30.347",
+          "kev": false,
+          "cwe": {
+            "primary": "CWE-441",
+            "top": "CWE-664",
+            "parent": "CWE-610",
+            "depth": 2,
+            "path": "CWE-664 > CWE-610 > CWE-441",
+            "is_leaf": false
+          },
+          "references": [
+            "https://source.android.com/docs/security/bulletin/2026/2026-03-01"
+          ]
+        }
+      ]
+    },
+    "raw_llm_answer": {
+      "summary": "В AppInfoBase.java, в методе hasInteractAcrossUsersFullPermission, может произойти переполнение пользовательских прав с использованием недоступного ключа. Это может привести к местному повышению уровня доступа без дополнительных выполненных действий.",
+      "actions": [
+        "обновить и проверить конфигурации системы",
+        "исследовать все входящие данные для устранения возможной уязвимости"
+      ],
+      "kev": true,
+      "cwe": {
+        "primary": "CWE-610",
+        "top": "CWE-664 > CWE-610 > CWE-441"
+      },
+      "references": [
+        "https://source.android.com/docs/security/bulletin/2026/2026-03-01"
+      ],
+      "grounded": true,
+      "notes": "В контексте недостаточно данных для более точного анализа."
+    },
+    "prompt": "Ты — интеллектуальный ассистент для первичного анализа уязвимостей.\n\nТебе даны:\n1) запрос пользователя;\n2) retrieval-контекст из локального корпуса.\n\nПравила:\n- Отвечай только на основе контекста ниже.\n- Ничего не выдумывай.\n- Не добавляй общие советы, если их нет в контексте.\n- Не упоминай антивирус, безопасные протоколы, шифрование, аутентификацию пользователей и другие общие меры, если они не следуют напрямую из контекста.\n- Пиши строго на русском языке.\n- Идентификаторы CVE, CWE и URL не переводить.\n- В поле cwe.top указывай только верхний CWE-идентификатор, например \"CWE-707\".\n- Не записывай в cwe.top полный путь вида \"CWE-707 > CWE-74 > ...\".\n- Если контекста недостаточно, честно укажи это в notes.\n- Не пиши в notes технические комментарии про нормализацию, генерацию или внутреннюю обработку.\n- Если данных в контексте мало, не додумывай детали, а формулируй ответ консервативно.\n\nЗапрос пользователя:\nCVE-2026-0021\n\nКонтекст:\n[DOCUMENT]\nscore: 100.000\ncve_id: CVE-2026-0021\npublished_date: 2026-03-02T19:16:30.347\nkev: False\ncwe_primary_id: CWE-441\ncwe_top_id: CWE-664\ncwe_path: CWE-664 > CWE-610 > CWE-441\ndescription: In hasInteractAcrossUsersFullPermission of AppInfoBase.java, there is a possible cross-user permission bypass due to a confused deputy. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.\nreferences:\n- https://source.android.com/docs/security/bulletin/2026/2026-03-01\n[/DOCUMENT]\n\nВерни строго JSON-объект такого вида:\n{\n  \"summary\": \"1-2 предложения по сути уязвимости\",\n  \"actions\": [\n    \"конкретное действие 1\",\n    \"конкретное действие 2\",\n    \"конкретное действие 3\"\n  ],\n  \"kev\": true,\n  \"cwe\": {\n    \"primary\": \"CWE-...\",\n    \"top\": \"CWE-...\"\n  },\n  \"references\": [\"url1\", \"url2\"],\n  \"grounded\": true,\n  \"notes\": \"краткая пометка, если данных мало или есть неоднозначность\"\n}\n\nТребования:\n- summary: кратко и по делу;\n- actions: только практические и уместные действия;\n- references: брать только из контекста;\n- grounded=true только если ответ реально опирается на контекст;\n- notes не должны быть служебной отпиской и не должны дублировать summary дословно.\n"
+  },
+  {
+    "model": "qwen2.5:1.5b",
+    "case_id": "exact_3",
+    "scenario": "exact_cve",
+    "query": "CVE-2024-20971",
+    "expected_type": "hit",
+    "duration_sec": 34.454,
+    "retrieval_found": true,
+    "top1_score": 100.0,
+    "top1_cve_id": "CVE-2024-20971",
+    "top1_kev": false,
+    "top1_cwe_primary": "CWE-400",
+    "top1_cwe_top": "CWE-664",
+    "summary": "Уязвимость в MySQL Server (component: Server: Optimizer) для версий 8.0.35 и ниже, 8.2.0 и ниже, позволяет низкоуровневому атакующему с использованием сетевого доступа получить полное нарушение сервера MySQL.",
+    "actions": [
+      "обновить или заменить используемую версию MySQL",
+      "Проверить наличие патча или обновления у вендора.",
+      "Определить, используется ли уязвимый компонент в вашей инфраструктуре."
+    ],
+    "actions_count": 3,
+    "kev": true,
+    "grounded": true,
+    "cwe_primary": "CWE-400",
+    "cwe_top": "CWE-664",
+    "references": [
+      "https://security.netapp.com/advisory/ntap-20240201-0003/",
+      "https://www.oracle.com/security-alerts/cpujan2024.html"
+    ],
+    "references_count": 2,
+    "notes": "В контексте недостаточно данных для более детального анализа уязвимости.",
+    "final_answer": {
+      "summary": "Уязвимость в MySQL Server (component: Server: Optimizer) для версий 8.0.35 и ниже, 8.2.0 и ниже, позволяет низкоуровневому атакующему с использованием сетевого доступа получить полное нарушение сервера MySQL.",
+      "actions": [
+        "обновить или заменить используемую версию MySQL",
+        "Проверить наличие патча или обновления у вендора.",
+        "Определить, используется ли уязвимый компонент в вашей инфраструктуре."
+      ],
+      "kev": true,
+      "cwe": {
+        "primary": "CWE-400",
+        "top": "CWE-664"
+      },
+      "references": [
+        "https://security.netapp.com/advisory/ntap-20240201-0003/",
+        "https://www.oracle.com/security-alerts/cpujan2024.html"
+      ],
+      "grounded": true,
+      "notes": "В контексте недостаточно данных для более детального анализа уязвимости."
+    },
+    "fallback_answer": {
+      "query": "CVE-2024-20971",
+      "status": "ok",
+      "summary": "Найден 1 релевантный кандидат: CVE-2024-20971. Retrieval-only baseline без генерации.",
+      "actions": [
+        "Проверить наличие патча или обновления у вендора.",
+        "Определить, используется ли уязвимый компонент в вашей инфраструктуре.",
+        "Оценить внешнюю доступность уязвимого сервиса до устранения проблемы."
+      ],
+      "items": [
+        {
+          "cve_id": "CVE-2024-20971",
+          "score": 100.0,
+          "description": "Vulnerability in the MySQL Server product of Oracle MySQL (component: Server: Optimizer).  Supported versions that are affected are 8.0.35 and prior and  8.2.0 and prior. Easily exploitable vulnerability allows high privileged attacker with network access via multiple protocols to compromise MySQL Server.  Successful attacks of this vulnerability can result in unauthorized ability to cause a hang or frequently repeatable crash (complete DOS) of MySQL Server. CVSS 3.1 Base Score 4.9 (Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:H).",
+          "published_date": "2024-01-16T22:15:44.177",
+          "kev": false,
+          "cwe": {
+            "primary": "CWE-400",
+            "top": "CWE-664",
+            "parent": "CWE-664",
+            "depth": 1,
+            "path": "CWE-664 > CWE-400",
+            "is_leaf": false
+          },
+          "references": [
+            "https://security.netapp.com/advisory/ntap-20240201-0003/",
+            "https://www.oracle.com/security-alerts/cpujan2024.html",
+            "https://security.netapp.com/advisory/ntap-20240201-0003/",
+            "https://www.oracle.com/security-alerts/cpujan2024.html"
+          ]
+        }
+      ]
+    },
+    "raw_llm_answer": {
+      "summary": "Уязвимость в MySQL Server (component: Server: Optimizer) для версий 8.0.35 и ниже, 8.2.0 и ниже, позволяет низкоуровневому атакующему с использованием сетевого доступа получить полное нарушение сервера MySQL.",
+      "actions": [
+        "обновить или заменить используемую версию MySQL",
+        "использовать более безопасные протоколы для подключения к базам данных"
+      ],
+      "kev": true,
+      "cwe": {
+        "primary": "CWE-400",
+        "top": "CWE-664"
+      },
+      "references": [
+        "https://security.netapp.com/advisory/ntap-20240201-0003/",
+        "https://www.oracle.com/security-alerts/cpujan2024.html"
+      ],
+      "grounded": true,
+      "notes": "В контексте недостаточно данных для более детального анализа уязвимости."
+    },
+    "prompt": "Ты — интеллектуальный ассистент для первичного анализа уязвимостей.\n\nТебе даны:\n1) запрос пользователя;\n2) retrieval-контекст из локального корпуса.\n\nПравила:\n- Отвечай только на основе контекста ниже.\n- Ничего не выдумывай.\n- Не добавляй общие советы, если их нет в контексте.\n- Не упоминай антивирус, безопасные протоколы, шифрование, аутентификацию пользователей и другие общие меры, если они не следуют напрямую из контекста.\n- Пиши строго на русском языке.\n- Идентификаторы CVE, CWE и URL не переводить.\n- В поле cwe.top указывай только верхний CWE-идентификатор, например \"CWE-707\".\n- Не записывай в cwe.top полный путь вида \"CWE-707 > CWE-74 > ...\".\n- Если контекста недостаточно, честно укажи это в notes.\n- Не пиши в notes технические комментарии про нормализацию, генерацию или внутреннюю обработку.\n- Если данных в контексте мало, не додумывай детали, а формулируй ответ консервативно.\n\nЗапрос пользователя:\nCVE-2024-20971\n\nКонтекст:\n[DOCUMENT]\nscore: 100.000\ncve_id: CVE-2024-20971\npublished_date: 2024-01-16T22:15:44.177\nkev: False\ncwe_primary_id: CWE-400\ncwe_top_id: CWE-664\ncwe_path: CWE-664 > CWE-400\ndescription: Vulnerability in the MySQL Server product of Oracle MySQL (component: Server: Optimizer).  Supported versions that are affected are 8.0.35 and prior and  8.2.0 and prior. Easily exploitable vulnerability allows high privileged attacker with network access via multiple protocols to compromise MySQL Server.  Successful attacks of this vulnerability can result in unauthorized ability to cause a hang or frequently repeatable crash (complete DOS) of MySQL Server. CVSS 3.1 Base Score 4.9 (Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:H).\nreferences:\n- https://security.netapp.com/advisory/ntap-20240201-0003/\n- https://www.oracle.com/security-alerts/cpujan2024.html\n- https://security.netapp.com/advisory/ntap-20240201-0003/\n- https://www.oracle.com/security-alerts/cpujan2024.html\n[/DOCUMENT]\n\nВерни строго JSON-объект такого вида:\n{\n  \"summary\": \"1-2 предложения по сути уязвимости\",\n  \"actions\": [\n    \"конкретное действие 1\",\n    \"конкретное действие 2\",\n    \"конкретное действие 3\"\n  ],\n  \"kev\": true,\n  \"cwe\": {\n    \"primary\": \"CWE-...\",\n    \"top\": \"CWE-...\"\n  },\n  \"references\": [\"url1\", \"url2\"],\n  \"grounded\": true,\n  \"notes\": \"краткая пометка, если данных мало или есть неоднозначность\"\n}\n\nТребования:\n- summary: кратко и по делу;\n- actions: только практические и уместные действия;\n- references: брать только из контекста;\n- grounded=true только если ответ реально опирается на контекст;\n- notes не должны быть служебной отпиской и не должны дублировать summary дословно.\n"
+  },
+  {
+    "model": "qwen2.5:1.5b",
+    "case_id": "text_1",
+    "scenario": "text_query",
+    "query": "oracle weblogic remote deserialization",
+    "expected_type": "hit",
+    "duration_sec": 30.252,
+    "retrieval_found": true,
+    "top1_score": 7.1,
+    "top1_cve_id": "CVE-2024-20927",
+    "top1_kev": false,
+    "top1_cwe_primary": "CWE-284",
+    "top1_cwe_top": "CWE-284",
+    "summary": "Oracle WebLogic Server (12.2.1.4.0, 14.1.1.0.0) может быть взломан с помощью deserialization через HTTP или T3/IIOP.",
+    "actions": [
+      "Проверить наличие патча или обновления у вендора.",
+      "Определить, используется ли уязвимый компонент в вашей инфраструктуре.",
+      "Ограничить внешнюю доступность уязвимого сервиса до устранения проблемы."
+    ],
+    "actions_count": 3,
+    "kev": true,
+    "grounded": true,
+    "cwe_primary": "CWE-284",
+    "cwe_top": "CWE-284",
+    "references": [
+      "https://www.oracle.com/security-alerts/cpujan2024.html"
+    ],
+    "references_count": 1,
+    "notes": "Ответ сформирован на основе найденного локального контекста; детализация ограничена качеством локальной модели.",
+    "final_answer": {
+      "summary": "Oracle WebLogic Server (12.2.1.4.0, 14.1.1.0.0) может быть взломан с помощью deserialization через HTTP или T3/IIOP.",
+      "actions": [
+        "Проверить наличие патча или обновления у вендора.",
+        "Определить, используется ли уязвимый компонент в вашей инфраструктуре.",
+        "Ограничить внешнюю доступность уязвимого сервиса до устранения проблемы."
+      ],
+      "kev": true,
+      "cwe": {
+        "primary": "CWE-284",
+        "top": "CWE-284"
+      },
+      "references": [
+        "https://www.oracle.com/security-alerts/cpujan2024.html"
+      ],
+      "grounded": true,
+      "notes": "Ответ сформирован на основе найденного локального контекста; детализация ограничена качеством локальной модели."
+    },
+    "fallback_answer": {
+      "query": "oracle weblogic remote deserialization",
+      "status": "ok",
+      "summary": "Найдено 3 релевантных кандидатов. Retrieval-only baseline без генерации.",
+      "actions": [
+        "Проверить наличие патча или обновления у вендора.",
+        "Определить, используется ли уязвимый компонент в вашей инфраструктуре.",
+        "Оценить внешнюю доступность уязвимого сервиса до устранения проблемы."
+      ],
+      "items": [
+        {
+          "cve_id": "CVE-2024-20927",
+          "score": 7.1,
+          "description": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core).  Supported versions that are affected are 12.2.1.4.0 and  14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server.  While the vulnerability is in Oracle WebLogic Server, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 8.6 (Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:H/A:N).",
+          "published_date": "2024-02-17T02:15:47.420",
+          "kev": false,
+          "cwe": {
+            "primary": "CWE-284",
+            "top": "CWE-284",
+            "parent": null,
+            "depth": 0,
+            "path": "CWE-284",
+            "is_leaf": false
+          },
+          "references": [
+            "https://www.oracle.com/security-alerts/cpujan2024.html",
+            "https://www.oracle.com/security-alerts/cpujan2024.html"
+          ]
+        },
+        {
+          "cve_id": "CVE-2024-20931",
+          "score": 7.1,
+          "description": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core).  Supported versions that are affected are 12.2.1.4.0 and  14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via T3, IIOP to compromise Oracle WebLogic Server.  Successful attacks of this vulnerability can result in  unauthorized access to critical data or complete access to all Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 7.5 (Confidentiality impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N).",
+          "published_date": "2024-02-17T02:15:47.740",
+          "kev": false,
+          "cwe": {
+            "primary": "CWE-284",
+            "top": "CWE-284",
+            "parent": null,
+            "depth": 0,
+            "path": "CWE-284",
+            "is_leaf": false
+          },
+          "references": [
+            "https://www.oracle.com/security-alerts/cpujan2024.html",
+            "https://www.oracle.com/security-alerts/cpujan2024.html"
+          ]
+        },
+        {
+          "cve_id": "CVE-2024-20986",
+          "score": 7.1,
+          "description": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core).  Supported versions that are affected are 12.2.1.4.0 and  14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server.  Successful attacks require human interaction from a person other than the attacker and while the vulnerability is in Oracle WebLogic Server, attacks may significantly impact additional products (scope change). Successful attacks of this vulnerability can result in  unauthorized update, insert or delete access to some of Oracle WebLogic Server accessible data as well as  unauthorized read access to a subset of Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 6.1 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N).",
+          "published_date": "2024-02-17T02:15:52.097",
+          "kev": false,
+          "cwe": {
+            "primary": "CWE-352",
+            "top": "CWE-693",
+            "parent": "CWE-345",
+            "depth": 2,
+            "path": "CWE-693 > CWE-345 > CWE-352",
+            "is_leaf": true
+          },
+          "references": [
+            "https://www.oracle.com/security-alerts/cpujan2024.html",
+            "https://www.oracle.com/security-alerts/cpujan2024.html"
+          ]
+        }
+      ]
+    },
+    "raw_llm_answer": {
+      "summary": "Oracle WebLogic Server (12.2.1.4.0, 14.1.1.0.0) может быть взломан с помощью deserialization через HTTP или T3/IIOP.",
+      "actions": [
+        "Обновить все версии Oracle WebLogic Server до последней актуальной версии."
+      ],
+      "kev": true,
+      "cwe": {
+        "primary": "CWE-284",
+        "top": "CWE-693 > CWE-345 > CWE-352"
+      },
+      "references": [
+        "https://www.oracle.com/security-alerts/cpujan2024.html"
+      ],
+      "grounded": true,
+      "notes": "Некоторые версии Oracle WebLogic Server (12.2.1.4.0, 14.1.1.0.0) могут быть взломаны с помощью deserialization через HTTP или T3/IIOP."
+    },
+    "prompt": "Ты — интеллектуальный ассистент для первичного анализа уязвимостей.\n\nТебе даны:\n1) запрос пользователя;\n2) retrieval-контекст из локального корпуса.\n\nПравила:\n- Отвечай только на основе контекста ниже.\n- Ничего не выдумывай.\n- Не добавляй общие советы, если их нет в контексте.\n- Не упоминай антивирус, безопасные протоколы, шифрование, аутентификацию пользователей и другие общие меры, если они не следуют напрямую из контекста.\n- Пиши строго на русском языке.\n- Идентификаторы CVE, CWE и URL не переводить.\n- В поле cwe.top указывай только верхний CWE-идентификатор, например \"CWE-707\".\n- Не записывай в cwe.top полный путь вида \"CWE-707 > CWE-74 > ...\".\n- Если контекста недостаточно, честно укажи это в notes.\n- Не пиши в notes технические комментарии про нормализацию, генерацию или внутреннюю обработку.\n- Если данных в контексте мало, не додумывай детали, а формулируй ответ консервативно.\n\nЗапрос пользователя:\noracle weblogic remote deserialization\n\nКонтекст:\n[DOCUMENT]\nscore: 7.100\ncve_id: CVE-2024-20927\npublished_date: 2024-02-17T02:15:47.420\nkev: False\ncwe_primary_id: CWE-284\ncwe_top_id: CWE-284\ncwe_path: CWE-284\ndescription: Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core).  Supported versions that are affected are 12.2.1.4.0 and  14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server.  While the vulnerability is in Oracle WebLogic Server, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 8.6 (Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:H/A:N).\nreferences:\n- https://www.oracle.com/security-alerts/cpujan2024.html\n- https://www.oracle.com/security-alerts/cpujan2024.html\n[/DOCUMENT]\n\n[DOCUMENT]\nscore: 7.100\ncve_id: CVE-2024-20931\npublished_date: 2024-02-17T02:15:47.740\nkev: False\ncwe_primary_id: CWE-284\ncwe_top_id: CWE-284\ncwe_path: CWE-284\ndescription: Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core).  Supported versions that are affected are 12.2.1.4.0 and  14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via T3, IIOP to compromise Oracle WebLogic Server.  Successful attacks of this vulnerability can result in  unauthorized access to critical data or complete access to all Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 7.5 (Confidentiality impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N).\nreferences:\n- https://www.oracle.com/security-alerts/cpujan2024.html\n- https://www.oracle.com/security-alerts/cpujan2024.html\n[/DOCUMENT]\n\n[DOCUMENT]\nscore: 7.100\ncve_id: CVE-2024-20986\npublished_date: 2024-02-17T02:15:52.097\nkev: False\ncwe_primary_id: CWE-352\ncwe_top_id: CWE-693\ncwe_path: CWE-693 > CWE-345 > CWE-352\ndescription: Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core).  Supported versions that are affected are 12.2.1.4.0 and  14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server.  Successful attacks require human interaction from a person other than the attacker and while the vulnerability is in Oracle WebLogic Server, attacks may significantly impact additional products (scope change). Successful attacks of this vulnerability can result in  unauthorized update, insert or delete access to some of Oracle WebLogic Server accessible data as well as  unauthorized read access to a subset of Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 6.1 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N).\nreferences:\n- https://www.oracle.com/security-alerts/cpujan2024.html\n- https://www.oracle.com/security-alerts/cpujan2024.html\n[/DOCUMENT]\n\nВерни строго JSON-объект такого вида:\n{\n  \"summary\": \"1-2 предложения по сути уязвимости\",\n  \"actions\": [\n    \"конкретное действие 1\",\n    \"конкретное действие 2\",\n    \"конкретное действие 3\"\n  ],\n  \"kev\": true,\n  \"cwe\": {\n    \"primary\": \"CWE-...\",\n    \"top\": \"CWE-...\"\n  },\n  \"references\": [\"url1\", \"url2\"],\n  \"grounded\": true,\n  \"notes\": \"краткая пометка, если данных мало или есть неоднозначность\"\n}\n\nТребования:\n- summary: кратко и по делу;\n- actions: только практические и уместные действия;\n- references: брать только из контекста;\n- grounded=true только если ответ реально опирается на контекст;\n- notes не должны быть служебной отпиской и не должны дублировать summary дословно.\n"
+  },
+  {
+    "model": "qwen2.5:1.5b",
+    "case_id": "text_2",
+    "scenario": "text_query",
+    "query": "beyondtrust pre-auth remote code execution",
+    "expected_type": "hit",
+    "duration_sec": 34.951,
+    "retrieval_found": true,
+    "top1_score": 14.5,
+    "top1_cve_id": "CVE-2026-1731",
+    "top1_kev": true,
+    "top1_cwe_primary": "CWE-78",
+    "top1_cwe_top": "CWE-707",
+    "summary": "BeyondTrust Remote Support (RS) и некоторые старые версии Privileged Remote Access (PRA) содержат критический предварительный аутентификационный вредоносный код-выполнение уязвимость. Специально сформированные запросы могут позволить независящему удаленному атакеру выполнять команды операционной системы в контексте пользователя сайта.",
+    "actions": [
+      "обновить или заменить установленные версии BeyondTrust RS и PRA",
+      "обеспечить использование только проверенных и обновленных пакетов безопасности",
+      "Повысить приоритет устранения, так как уязвимость входит в каталог KEV."
+    ],
+    "actions_count": 3,
+    "kev": true,
+    "grounded": true,
+    "cwe_primary": "CWE-707",
+    "cwe_top": "CWE-78",
+    "references": [
+      "https://beyondtrustcorp.service-now.com/csm?id=csm_kb_article&sysparm_article=KB0023293",
+      "https://www.beyondtrust.com/trust-center/security-advisories/bt26-02"
+    ],
+    "references_count": 2,
+    "notes": "Ответ сформирован на основе найденного локального контекста; детализация ограничена качеством локальной модели.",
+    "final_answer": {
+      "summary": "BeyondTrust Remote Support (RS) и некоторые старые версии Privileged Remote Access (PRA) содержат критический предварительный аутентификационный вредоносный код-выполнение уязвимость. Специально сформированные запросы могут позволить независящему удаленному атакеру выполнять команды операционной системы в контексте пользователя сайта.",
+      "actions": [
+        "обновить или заменить установленные версии BeyondTrust RS и PRA",
+        "обеспечить использование только проверенных и обновленных пакетов безопасности",
+        "Повысить приоритет устранения, так как уязвимость входит в каталог KEV."
+      ],
+      "kev": true,
+      "cwe": {
+        "primary": "CWE-707",
+        "top": "CWE-78"
+      },
+      "references": [
+        "https://beyondtrustcorp.service-now.com/csm?id=csm_kb_article&sysparm_article=KB0023293",
+        "https://www.beyondtrust.com/trust-center/security-advisories/bt26-02"
+      ],
+      "grounded": true,
+      "notes": "Ответ сформирован на основе найденного локального контекста; детализация ограничена качеством локальной модели."
+    },
+    "fallback_answer": {
+      "query": "beyondtrust pre-auth remote code execution",
+      "status": "ok",
+      "summary": "Найдено 2 релевантных кандидатов. Retrieval-only baseline без генерации.",
+      "actions": [
+        "Проверить наличие патча или обновления у вендора.",
+        "Определить, используется ли уязвимый компонент в вашей инфраструктуре.",
+        "Если уязвимость входит в KEV, повысить приоритет устранения."
+      ],
+      "items": [
+        {
+          "cve_id": "CVE-2026-1731",
+          "score": 14.5,
+          "description": "BeyondTrust Remote Support (RS) and certain older versions of Privileged Remote Access (PRA) contain a critical pre-authentication remote code execution vulnerability. By sending specially crafted requests, an unauthenticated remote attacker may be able to execute operating system commands in the context of the site user.",
+          "published_date": "2026-02-06T22:16:11.020",
+          "kev": true,
+          "cwe": {
+            "primary": "CWE-78",
+            "top": "CWE-707",
+            "parent": "CWE-77",
+            "depth": 3,
+            "path": "CWE-707 > CWE-74 > CWE-77 > CWE-78",
+            "is_leaf": true
+          },
+          "references": [
+            "https://beyondtrustcorp.service-now.com/csm?id=csm_kb_article&sysparm_article=KB0023293",
+            "https://www.beyondtrust.com/trust-center/security-advisories/bt26-02",
+            "https://github.com/win3zz/CVE-2026-1731",
+            "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2026-1731",
+            "https://www.greynoise.io/blog/reconnaissance-beyondtrust-rce-cve-2026-1731"
+          ]
+        },
+        {
+          "cve_id": "CVE-2025-5309",
+          "score": 12.8,
+          "description": "The chat feature within Remote Support (RS) and Privileged Remote Access (PRA) is vulnerable to a Server-Side Template Injection vulnerability which can lead to remote code execution.",
+          "published_date": "2025-06-16T17:15:29.853",
+          "kev": false,
+          "cwe": {
+            "primary": "CWE-94",
+            "top": "CWE-707",
+            "parent": "CWE-74",
+            "depth": 2,
+            "path": "CWE-707 > CWE-74 > CWE-94",
+            "is_leaf": false
+          },
+          "references": [
+            "https://www.beyondtrust.com/trust-center/security-advisories/bt25-04"
+          ]
+        }
+      ]
+    },
+    "raw_llm_answer": {
+      "summary": "BeyondTrust Remote Support (RS) и некоторые старые версии Privileged Remote Access (PRA) содержат критический предварительный аутентификационный вредоносный код-выполнение уязвимость. Специально сформированные запросы могут позволить независящему удаленному атакеру выполнять команды операционной системы в контексте пользователя сайта.",
+      "actions": [
+        "обновить или заменить установленные версии BeyondTrust RS и PRA",
+        "обеспечить использование только проверенных и обновленных пакетов безопасности"
+      ],
+      "kev": true,
+      "cwe": {
+        "primary": "CWE-707",
+        "top": "CWE-78"
+      },
+      "references": [
+        "https://beyondtrustcorp.service-now.com/csm?id=csm_kb_article&sysparm_article=KB0023293",
+        "https://www.beyondtrust.com/trust-center/security-advisories/bt26-02"
+      ]
+    },
+    "prompt": "Ты — интеллектуальный ассистент для первичного анализа уязвимостей.\n\nТебе даны:\n1) запрос пользователя;\n2) retrieval-контекст из локального корпуса.\n\nПравила:\n- Отвечай только на основе контекста ниже.\n- Ничего не выдумывай.\n- Не добавляй общие советы, если их нет в контексте.\n- Не упоминай антивирус, безопасные протоколы, шифрование, аутентификацию пользователей и другие общие меры, если они не следуют напрямую из контекста.\n- Пиши строго на русском языке.\n- Идентификаторы CVE, CWE и URL не переводить.\n- В поле cwe.top указывай только верхний CWE-идентификатор, например \"CWE-707\".\n- Не записывай в cwe.top полный путь вида \"CWE-707 > CWE-74 > ...\".\n- Если контекста недостаточно, честно укажи это в notes.\n- Не пиши в notes технические комментарии про нормализацию, генерацию или внутреннюю обработку.\n- Если данных в контексте мало, не додумывай детали, а формулируй ответ консервативно.\n\nЗапрос пользователя:\nbeyondtrust pre-auth remote code execution\n\nКонтекст:\n[DOCUMENT]\nscore: 14.500\ncve_id: CVE-2026-1731\npublished_date: 2026-02-06T22:16:11.020\nkev: True\ncwe_primary_id: CWE-78\ncwe_top_id: CWE-707\ncwe_path: CWE-707 > CWE-74 > CWE-77 > CWE-78\ndescription: BeyondTrust Remote Support (RS) and certain older versions of Privileged Remote Access (PRA) contain a critical pre-authentication remote code execution vulnerability. By sending specially crafted requests, an unauthenticated remote attacker may be able to execute operating system commands in the context of the site user.\nreferences:\n- https://beyondtrustcorp.service-now.com/csm?id=csm_kb_article&sysparm_article=KB0023293\n- https://www.beyondtrust.com/trust-center/security-advisories/bt26-02\n- https://github.com/win3zz/CVE-2026-1731\n- https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2026-1731\n- https://www.greynoise.io/blog/reconnaissance-beyondtrust-rce-cve-2026-1731\n[/DOCUMENT]\n\n[DOCUMENT]\nscore: 12.800\ncve_id: CVE-2025-5309\npublished_date: 2025-06-16T17:15:29.853\nkev: False\ncwe_primary_id: CWE-94\ncwe_top_id: CWE-707\ncwe_path: CWE-707 > CWE-74 > CWE-94\ndescription: The chat feature within Remote Support (RS) and Privileged Remote Access (PRA) is vulnerable to a Server-Side Template Injection vulnerability which can lead to remote code execution.\nreferences:\n- https://www.beyondtrust.com/trust-center/security-advisories/bt25-04\n[/DOCUMENT]\n\nВерни строго JSON-объект такого вида:\n{\n  \"summary\": \"1-2 предложения по сути уязвимости\",\n  \"actions\": [\n    \"конкретное действие 1\",\n    \"конкретное действие 2\",\n    \"конкретное действие 3\"\n  ],\n  \"kev\": true,\n  \"cwe\": {\n    \"primary\": \"CWE-...\",\n    \"top\": \"CWE-...\"\n  },\n  \"references\": [\"url1\", \"url2\"],\n  \"grounded\": true,\n  \"notes\": \"краткая пометка, если данных мало или есть неоднозначность\"\n}\n\nТребования:\n- summary: кратко и по делу;\n- actions: только практические и уместные действия;\n- references: брать только из контекста;\n- grounded=true только если ответ реально опирается на контекст;\n- notes не должны быть служебной отпиской и не должны дублировать summary дословно.\n"
+  },
+  {
+    "model": "qwen2.5:1.5b",
+    "case_id": "text_3",
+    "scenario": "text_query",
+    "query": "android privilege escalation appinfobase hasInteractAcrossUsersFullPermission",
+    "expected_type": "hit",
+    "duration_sec": 27.5,
+    "retrieval_found": true,
+    "top1_score": 9.5,
+    "top1_cve_id": "CVE-2025-22428",
+    "top1_kev": false,
+    "top1_cwe_primary": "CWE-863",
+    "top1_cwe_top": "CWE-284",
+    "summary": "AppInfoBase.java 中的 hasInteractAcrossUsersFullPermission 方法存在逻辑错误，可能导致权限跨越用户级别的本地权限提升。",
+    "actions": [
+      "检查并修复 AppInfoBase.java 文件中的逻辑错误",
+      "更新 Android 设备上的所有应用以确保它们使用最新版本的 AppInfoBase.java",
+      "Проверить наличие патча или обновления у вендора."
+    ],
+    "actions_count": 3,
+    "kev": true,
+    "grounded": true,
+    "cwe_primary": "CWE-863",
+    "cwe_top": "CWE-284",
+    "references": [
+      "https://android.googlesource.com/platform/packages/apps/Settings/+/4a9cb946e978d9d93f9ee0a2c4c8ca41ba774540",
+      "https://source.android.com/docs/security/bulletin/2025-04-01"
+    ],
+    "references_count": 2,
+    "notes": "该漏洞可能影响 Android 设备上的多个应用，需要立即更新相关应用以修复安全问题。",
+    "final_answer": {
+      "summary": "AppInfoBase.java 中的 hasInteractAcrossUsersFullPermission 方法存在逻辑错误，可能导致权限跨越用户级别的本地权限提升。",
+      "actions": [
+        "检查并修复 AppInfoBase.java 文件中的逻辑错误",
+        "更新 Android 设备上的所有应用以确保它们使用最新版本的 AppInfoBase.java",
+        "Проверить наличие патча или обновления у вендора."
+      ],
+      "kev": true,
+      "cwe": {
+        "primary": "CWE-863",
+        "top": "CWE-284"
+      },
+      "references": [
+        "https://android.googlesource.com/platform/packages/apps/Settings/+/4a9cb946e978d9d93f9ee0a2c4c8ca41ba774540",
+        "https://source.android.com/docs/security/bulletin/2025-04-01"
+      ],
+      "grounded": true,
+      "notes": "该漏洞可能影响 Android 设备上的多个应用，需要立即更新相关应用以修复安全问题。"
+    },
+    "fallback_answer": {
+      "query": "android privilege escalation appinfobase hasInteractAcrossUsersFullPermission",
+      "status": "ok",
+      "summary": "Найдено 3 релевантных кандидатов. Retrieval-only baseline без генерации.",
+      "actions": [
+        "Проверить наличие патча или обновления у вендора.",
+        "Определить, используется ли уязвимый компонент в вашей инфраструктуре.",
+        "Оценить внешнюю доступность уязвимого сервиса до устранения проблемы."
+      ],
+      "items": [
+        {
+          "cve_id": "CVE-2025-22428",
+          "score": 9.5,
+          "description": "In hasInteractAcrossUsersFullPermission of AppInfoBase.java, there is a possible way to grant permissions to an app on the secondary user from the primary user due to a logic error in the code. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+          "published_date": "2025-09-02T23:15:34.057",
+          "kev": false,
+          "cwe": {
+            "primary": "CWE-863",
+            "top": "CWE-284",
+            "parent": "CWE-285",
+            "depth": 2,
+            "path": "CWE-284 > CWE-285 > CWE-863",
+            "is_leaf": false
+          },
+          "references": [
+            "https://android.googlesource.com/platform/packages/apps/Settings/+/4a9cb946e978d9d93f9ee0a2c4c8ca41ba774540",
+            "https://source.android.com/security/bulletin/2025-04-01"
+          ]
+        },
+        {
+          "cve_id": "CVE-2026-0021",
+          "score": 9.5,
+          "description": "In hasInteractAcrossUsersFullPermission of AppInfoBase.java, there is a possible cross-user permission bypass due to a confused deputy. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+          "published_date": "2026-03-02T19:16:30.347",
+          "kev": false,
+          "cwe": {
+            "primary": "CWE-441",
+            "top": "CWE-664",
+            "parent": "CWE-610",
+            "depth": 2,
+            "path": "CWE-664 > CWE-610 > CWE-441",
+            "is_leaf": false
+          },
+          "references": [
+            "https://source.android.com/docs/security/bulletin/2026/2026-03-01"
+          ]
+        },
+        {
+          "cve_id": "CVE-2024-43088",
+          "score": 8.3,
+          "description": "In multiple functions in AppInfoBase.java, there is a possible way to manipulate app permission settings belonging to another user on the device due to a missing permission check. This could lead to local escalation of privilege across user boundaries with no additional execution privileges needed. User interaction is not needed for exploitation.",
+          "published_date": "2024-11-13T18:15:21.387",
+          "kev": false,
+          "cwe": {
+            "primary": "CWE-862",
+            "top": "CWE-284",
+            "parent": "CWE-285",
+            "depth": 2,
+            "path": "CWE-284 > CWE-285 > CWE-862",
+            "is_leaf": false
+          },
+          "references": [
+            "https://android.googlesource.com/platform/packages/apps/Settings/+/975c28535419be1cc45f66712f41e4a7a40e6001",
+            "https://source.android.com/security/bulletin/2024-11-01"
+          ]
+        }
+      ]
+    },
+    "raw_llm_answer": {
+      "summary": "AppInfoBase.java 中的 hasInteractAcrossUsersFullPermission 方法存在逻辑错误，可能导致权限跨越用户级别的本地权限提升。",
+      "actions": [
+        "检查并修复 AppInfoBase.java 文件中的逻辑错误",
+        "更新 Android 设备上的所有应用以确保它们使用最新版本的 AppInfoBase.java"
+      ],
+      "kev": true,
+      "cwe": {
+        "primary": "CWE-863",
+        "top": "CWE-284"
+      },
+      "references": [
+        "https://android.googlesource.com/platform/packages/apps/Settings/+/4a9cb946e978d9d93f9ee0a2c4c8ca41ba774540",
+        "https://source.android.com/docs/security/bulletin/2025-04-01"
+      ],
+      "grounded": true,
+      "notes": "该漏洞可能影响 Android 设备上的多个应用，需要立即更新相关应用以修复安全问题。"
+    },
+    "prompt": "Ты — интеллектуальный ассистент для первичного анализа уязвимостей.\n\nТебе даны:\n1) запрос пользователя;\n2) retrieval-контекст из локального корпуса.\n\nПравила:\n- Отвечай только на основе контекста ниже.\n- Ничего не выдумывай.\n- Не добавляй общие советы, если их нет в контексте.\n- Не упоминай антивирус, безопасные протоколы, шифрование, аутентификацию пользователей и другие общие меры, если они не следуют напрямую из контекста.\n- Пиши строго на русском языке.\n- Идентификаторы CVE, CWE и URL не переводить.\n- В поле cwe.top указывай только верхний CWE-идентификатор, например \"CWE-707\".\n- Не записывай в cwe.top полный путь вида \"CWE-707 > CWE-74 > ...\".\n- Если контекста недостаточно, честно укажи это в notes.\n- Не пиши в notes технические комментарии про нормализацию, генерацию или внутреннюю обработку.\n- Если данных в контексте мало, не додумывай детали, а формулируй ответ консервативно.\n\nЗапрос пользователя:\nandroid privilege escalation appinfobase hasInteractAcrossUsersFullPermission\n\nКонтекст:\n[DOCUMENT]\nscore: 9.500\ncve_id: CVE-2025-22428\npublished_date: 2025-09-02T23:15:34.057\nkev: False\ncwe_primary_id: CWE-863\ncwe_top_id: CWE-284\ncwe_path: CWE-284 > CWE-285 > CWE-863\ndescription: In hasInteractAcrossUsersFullPermission of AppInfoBase.java, there is a possible way to grant permissions to an app on the secondary user from the primary user due to a logic error in the code. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.\nreferences:\n- https://android.googlesource.com/platform/packages/apps/Settings/+/4a9cb946e978d9d93f9ee0a2c4c8ca41ba774540\n- https://source.android.com/security/bulletin/2025-04-01\n[/DOCUMENT]\n\n[DOCUMENT]\nscore: 9.500\ncve_id: CVE-2026-0021\npublished_date: 2026-03-02T19:16:30.347\nkev: False\ncwe_primary_id: CWE-441\ncwe_top_id: CWE-664\ncwe_path: CWE-664 > CWE-610 > CWE-441\ndescription: In hasInteractAcrossUsersFullPermission of AppInfoBase.java, there is a possible cross-user permission bypass due to a confused deputy. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.\nreferences:\n- https://source.android.com/docs/security/bulletin/2026/2026-03-01\n[/DOCUMENT]\n\n[DOCUMENT]\nscore: 8.300\ncve_id: CVE-2024-43088\npublished_date: 2024-11-13T18:15:21.387\nkev: False\ncwe_primary_id: CWE-862\ncwe_top_id: CWE-284\ncwe_path: CWE-284 > CWE-285 > CWE-862\ndescription: In multiple functions in AppInfoBase.java, there is a possible way to manipulate app permission settings belonging to another user on the device due to a missing permission check. This could lead to local escalation of privilege across user boundaries with no additional execution privileges needed. User interaction is not needed for exploitation.\nreferences:\n- https://android.googlesource.com/platform/packages/apps/Settings/+/975c28535419be1cc45f66712f41e4a7a40e6001\n- https://source.android.com/security/bulletin/2024-11-01\n[/DOCUMENT]\n\nВерни строго JSON-объект такого вида:\n{\n  \"summary\": \"1-2 предложения по сути уязвимости\",\n  \"actions\": [\n    \"конкретное действие 1\",\n    \"конкретное действие 2\",\n    \"конкретное действие 3\"\n  ],\n  \"kev\": true,\n  \"cwe\": {\n    \"primary\": \"CWE-...\",\n    \"top\": \"CWE-...\"\n  },\n  \"references\": [\"url1\", \"url2\"],\n  \"grounded\": true,\n  \"notes\": \"краткая пометка, если данных мало или есть неоднозначность\"\n}\n\nТребования:\n- summary: кратко и по делу;\n- actions: только практические и уместные действия;\n- references: брать только из контекста;\n- grounded=true только если ответ реально опирается на контекст;\n- notes не должны быть служебной отпиской и не должны дублировать summary дословно.\n"
+  },
+  {
+    "model": "qwen2.5:1.5b",
+    "case_id": "nohit_1",
+    "scenario": "no_hit",
+    "query": "CVE-1999-0000",
+    "expected_type": "no_hit",
+    "duration_sec": 12.101,
+    "retrieval_found": false,
+    "top1_score": null,
+    "top1_cve_id": null,
+    "top1_kev": null,
+    "top1_cwe_primary": null,
+    "top1_cwe_top": null,
+    "summary": "По запросу не найден релевантный контекст в локальном корпусе.",
+    "actions": [],
+    "actions_count": 0,
+    "kev": false,
+    "grounded": false,
+    "cwe_primary": null,
+    "cwe_top": null,
+    "references": [],
+    "references_count": 0,
+    "notes": "Надёжное совпадение в корпусе не найдено. Результат не следует трактовать как подтверждённую информацию по конкретной уязвимости.",
+    "final_answer": {
+      "summary": "По запросу не найден релевантный контекст в локальном корпусе.",
+      "actions": [],
+      "kev": false,
+      "cwe": {
+        "primary": null,
+        "top": null
+      },
+      "references": [],
+      "grounded": false,
+      "notes": "Это no-hit сценарий: в локальном корпусе не найдено подтверждённого релевантного контекста, поэтому ответ не должен интерпретироваться как подтверждённая информация по конкретной уязвимости."
+    },
+    "fallback_answer": {
+      "query": "CVE-1999-0000",
+      "status": "no_hits",
+      "summary": "По запросу не найден релевантный контекст в локальном корпусе.",
+      "actions": [],
+      "items": []
+    },
+    "raw_llm_answer": {
+      "summary": "По запросу не найден релевантный контекст в локальном корпусе.",
+      "actions": [],
+      "kev": false,
+      "cwe": {
+        "primary": null,
+        "top": null
+      },
+      "references": [],
+      "grounded": false,
+      "notes": "В локальном корпусе не найдено подтверждённого релевантного контекста по запросу."
+    },
+    "prompt": "Ты — интеллектуальный ассистент для первичного анализа уязвимостей.\n\nТебе даны:\n1) запрос пользователя;\n2) retrieval-контекст из локального корпуса.\n\nЗапрос пользователя:\nCVE-1999-0000\n\nКонтекст:\n[NO_CONTEXT]\n\nКритически важное правило:\nВ локальном корпусе не найден релевантный контекст.\nЗначит, ты не должен:\n- выдумывать факты;\n- придумывать рекомендации по конкретной уязвимости;\n- придумывать CWE;\n- придумывать ссылки;\n- делать вид, что знаешь ответ.\n\nВерни строго JSON-объект такого вида:\n{\n  \"summary\": \"По запросу не найден релевантный контекст в локальном корпусе.\",\n  \"actions\": [],\n  \"kev\": false,\n  \"cwe\": {\n    \"primary\": null,\n    \"top\": null\n  },\n  \"references\": [],\n  \"grounded\": false,\n  \"notes\": \"В локальном корпусе не найдено подтверждённого релевантного контекста по запросу.\"\n}\n\nДополнительные требования:\n- Пиши строго на русском языке.\n- Не добавляй никаких пояснений вне JSON.\n- Не добавляй служебных комментариев.\n- Не заполняй actions, references и cwe никакими значениями.\n"
+  },
+  {
+    "model": "qwen2.5:1.5b",
+    "case_id": "nohit_2",
+    "scenario": "no_hit",
+    "query": "какая-то несуществующая уязвимость blabla-1234",
+    "expected_type": "no_hit",
+    "duration_sec": 18.971,
+    "retrieval_found": false,
+    "top1_score": null,
+    "top1_cve_id": null,
+    "top1_kev": null,
+    "top1_cwe_primary": null,
+    "top1_cwe_top": null,
+    "summary": "По запросу не найден релевантный контекст в локальном корпусе.",
+    "actions": [],
+    "actions_count": 0,
+    "kev": false,
+    "grounded": false,
+    "cwe_primary": null,
+    "cwe_top": null,
+    "references": [],
+    "references_count": 0,
+    "notes": "Надёжное совпадение в корпусе не найдено. Результат не следует трактовать как подтверждённую информацию по конкретной уязвимости.",
+    "final_answer": {
+      "summary": "По запросу не найден релевантный контекст в локальном корпусе.",
+      "actions": [],
+      "kev": false,
+      "cwe": {
+        "primary": null,
+        "top": null
+      },
+      "references": [],
+      "grounded": false,
+      "notes": "Это no-hit сценарий: в локальном корпусе не найдено подтверждённого релевантного контекста, поэтому ответ не должен интерпретироваться как подтверждённая информация по конкретной уязвимости."
+    },
+    "fallback_answer": {
+      "query": "какая-то несуществующая уязвимость blabla-1234",
+      "status": "no_hits",
+      "summary": "По запросу не найден релевантный контекст в локальном корпусе.",
+      "actions": [],
+      "items": []
+    },
+    "raw_llm_answer": {
+      "summary": "По запросу не найден релевантный контекст в локальном корпусе.",
+      "actions": [],
+      "kev": false,
+      "cwe": {
+        "primary": null,
+        "top": null
+      },
+      "references": [],
+      "grounded": false,
+      "notes": "В локальном корпусе не найдено подтверждённого релевантного контекста по запросу."
+    },
+    "prompt": "Ты — интеллектуальный ассистент для первичного анализа уязвимостей.\n\nТебе даны:\n1) запрос пользователя;\n2) retrieval-контекст из локального корпуса.\n\nЗапрос пользователя:\nкакая-то несуществующая уязвимость blabla-1234\n\nКонтекст:\n[NO_CONTEXT]\n\nКритически важное правило:\nВ локальном корпусе не найден релевантный контекст.\nЗначит, ты не должен:\n- выдумывать факты;\n- придумывать рекомендации по конкретной уязвимости;\n- придумывать CWE;\n- придумывать ссылки;\n- делать вид, что знаешь ответ.\n\nВерни строго JSON-объект такого вида:\n{\n  \"summary\": \"По запросу не найден релевантный контекст в локальном корпусе.\",\n  \"actions\": [],\n  \"kev\": false,\n  \"cwe\": {\n    \"primary\": null,\n    \"top\": null\n  },\n  \"references\": [],\n  \"grounded\": false,\n  \"notes\": \"В локальном корпусе не найдено подтверждённого релевантного контекста по запросу.\"\n}\n\nДополнительные требования:\n- Пиши строго на русском языке.\n- Не добавляй никаких пояснений вне JSON.\n- Не добавляй служебных комментариев.\n- Не заполняй actions, references и cwe никакими значениями.\n"
+  }
+]

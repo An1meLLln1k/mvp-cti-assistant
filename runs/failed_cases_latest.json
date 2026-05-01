@@ -1,0 +1,48 @@
+{
+  "report": "C:\\Users\\narut\\OneDrive\\Рабочий стол\\Diploma\\mvp-cti-assistant\\runs\\eval_retrieval_20260311_205532.json",
+  "failed_positive_count": 1,
+  "failed_negative_count": 2,
+  "failed_positive": [
+    {
+      "id": "case_017",
+      "type": "positive",
+      "query": "heap corruption через crafted html page",
+      "expected": [
+        "CVE-2026-2441"
+      ],
+      "got": [
+        "CVE-2024-0519",
+        "CVE-2024-7965",
+        "CVE-2024-7971"
+      ],
+      "hit@k": false,
+      "rank": null
+    }
+  ],
+  "failed_negative": [
+    {
+      "id": "case_024",
+      "type": "negative",
+      "query": "уязвимость в oracle weblogic remote deserialization 2017",
+      "expected": [],
+      "got": [
+        "CVE-2024-20927",
+        "CVE-2024-20931",
+        "CVE-2024-20986"
+      ],
+      "no_hits": false
+    },
+    {
+      "id": "case_025",
+      "type": "negative",
+      "query": "sql injection в старом wordpress plugin",
+      "expected": [],
+      "got": [
+        "CVE-2024-21747",
+        "CVE-2024-0405",
+        "CVE-2024-0705"
+      ],
+      "no_hits": false
+    }
+  ]
+}

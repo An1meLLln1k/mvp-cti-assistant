@@ -1,0 +1,14 @@
+{
+  "model": "mistral",
+  "cases_total": 8,
+  "cases_ok": 8,
+  "cases_error": 0,
+  "retrieval_found_count": 6,
+  "grounded_count": 6,
+  "avg_duration_sec": 101.483,
+  "avg_actions_count": 2.25,
+  "avg_references_count": 1.25,
+  "output_dir": "runs\\generation_compare_mistral_20260422_191903",
+  "json_path": "runs\\generation_compare_mistral_20260422_191903\\generation_results_mistral.json",
+  "csv_path": "runs\\generation_compare_mistral_20260422_191903\\manual_scoring_template_mistral.csv"
+}

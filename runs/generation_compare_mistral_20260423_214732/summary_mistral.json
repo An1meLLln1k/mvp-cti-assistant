@@ -1,0 +1,16 @@
+{
+  "model": "mistral",
+  "benchmark_path": "dataset\\benchmark_generation_v1.jsonl",
+  "cases_total": 30,
+  "cases_ok": 30,
+  "cases_error": 0,
+  "retrieval_found_count": 23,
+  "top1_expected_match_count": 26,
+  "grounded_count": 23,
+  "avg_duration_sec": 87.507,
+  "avg_actions_count": 2.3,
+  "avg_references_count": 1.4,
+  "output_dir": "runs\\generation_compare_mistral_20260423_214732",
+  "json_path": "runs\\generation_compare_mistral_20260423_214732\\generation_results_mistral.json",
+  "csv_path": "runs\\generation_compare_mistral_20260423_214732\\manual_scoring_template_mistral.csv"
+}

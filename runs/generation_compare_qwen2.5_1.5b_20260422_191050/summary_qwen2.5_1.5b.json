@@ -1,0 +1,14 @@
+{
+  "model": "qwen2.5:1.5b",
+  "cases_total": 8,
+  "cases_ok": 8,
+  "cases_error": 0,
+  "retrieval_found_count": 6,
+  "grounded_count": 6,
+  "avg_duration_sec": 36.006,
+  "avg_actions_count": 2.25,
+  "avg_references_count": 1.625,
+  "output_dir": "runs\\generation_compare_qwen2.5_1.5b_20260422_191050",
+  "json_path": "runs\\generation_compare_qwen2.5_1.5b_20260422_191050\\generation_results_qwen2.5_1.5b.json",
+  "csv_path": "runs\\generation_compare_qwen2.5_1.5b_20260422_191050\\manual_scoring_template_qwen2.5_1.5b.csv"
+}

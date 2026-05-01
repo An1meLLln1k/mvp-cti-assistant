@@ -1,52 +1,105 @@
+# =========================
 # Python cache / build junk
+# =========================
 __pycache__/
 *.py[cod]
 *$py.class
 .ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
+
+# =========================
 # Virtual environments
+# =========================
 .venv/
 venv/
 env/
 ENV/
 
+
+# =========================
 # IDE / OS garbage
+# =========================
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
 desktop.ini
 
+
+# =========================
 # Secrets / local config
+# =========================
 .env
 .env.*
 *.secret
 *.secrets
 
+# Keep example env file in repo
+!.env.example
+
+
+# =========================
 # Logs / runtime outputs
-runs/
+# =========================
 *.log
 
-# Ignore heavy data by default
-dataset/raw/
-dataset/*.json
-dataset/*.jsonl
-dataset/*.csv
-dataset/*.xml
+# Ignore most runtime runs by default
+runs/*
 
-# Keep required lightweight project artifacts
+# But keep useful evaluation/generation artifacts
+!runs/failed_cases_latest.json
+!runs/manual_scoring_review/
+!runs/manual_scoring_review/**
+!runs/generation_compare_*/
+!runs/generation_compare_*/**
+
+
+# =========================
+# Heavy/raw datasets
+# =========================
+
+# Raw source files are too heavy for normal Git
+dataset/raw/
+
+# Large generated datasets are too close to / above GitHub limits
+dataset/dataset_v2.jsonl
+dataset/dataset_v2_enriched.jsonl
+
+# Archives should not live in Git
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+
+
+# =========================
+# Keep dataset artifacts
+# =========================
+
+# Benchmarks / small datasets / notes are allowed
+!dataset/benchmark_generation_v1.jsonl
 !dataset/benchmark_v0.jsonl
+!dataset/benchmark_v0_old.jsonl
 !dataset/dataset_v1.jsonl
 !dataset/cwe_hierarchy.json
 !dataset/cwec_v4.19.1.xml
 
-# Keep docs / plans
-!dataset/benchmark_plan.md
-!dataset/dataset_plan.md
-!dataset/dataset_plan.md.txt
-!dataset/full_benchmark.md
+# Dataset docs / plans
+!dataset/*.md
+!dataset/*.txt
 
+
+# =========================
 # Repo docs
+# =========================
 !README.md
 !PROGRESS.md
+!PIPELINE.md
+!PIPELINE_EXPLAIN.md
+!END_TO_END.md
+!ANSWERS.md
 !model.ipynb

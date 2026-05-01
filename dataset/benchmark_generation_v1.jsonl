@@ -1,0 +1,30 @@
+{"id":"gen_case_001","scenario":"exact_cve","query":"CVE-2026-2441","expected_cve_ids":["CVE-2026-2441"]}
+{"id":"gen_case_002","scenario":"exact_cve","query":"CVE-2026-1731","expected_cve_ids":["CVE-2026-1731"]}
+{"id":"gen_case_003","scenario":"exact_cve","query":"CVE-2026-20700","expected_cve_ids":["CVE-2026-20700"]}
+{"id":"gen_case_004","scenario":"exact_cve","query":"CVE-2024-43468","expected_cve_ids":["CVE-2024-43468"]}
+{"id":"gen_case_005","scenario":"exact_cve","query":"CVE-2025-15556","expected_cve_ids":["CVE-2025-15556"]}
+{"id":"gen_case_006","scenario":"exact_cve","query":"CVE-2024-4671","expected_cve_ids":["CVE-2024-4671"]}
+{"id":"gen_case_007","scenario":"exact_cve","query":"CVE-2024-0224","expected_cve_ids":["CVE-2024-0224"]}
+{"id":"gen_case_008","scenario":"exact_cve","query":"CVE-2024-0225","expected_cve_ids":["CVE-2024-0225"]}
+{"id":"gen_case_009","scenario":"exact_cve","query":"CVE-2024-0222","expected_cve_ids":["CVE-2024-0222"]}
+{"id":"gen_case_010","scenario":"exact_cve","query":"CVE-2024-20927","expected_cve_ids":["CVE-2024-20927"]}
+{"id":"gen_case_011","scenario":"text_query","query":"что за CVE-2026-2441 и что делать","expected_cve_ids":["CVE-2026-2441"]}
+{"id":"gen_case_012","scenario":"text_query","query":"что за CVE-2026-1731 и что делать","expected_cve_ids":["CVE-2026-1731"]}
+{"id":"gen_case_013","scenario":"text_query","query":"что за CVE-2026-20700 и что делать","expected_cve_ids":["CVE-2026-20700"]}
+{"id":"gen_case_014","scenario":"text_query","query":"beyondtrust pre-auth remote code execution","expected_cve_ids":["CVE-2026-1731"]}
+{"id":"gen_case_015","scenario":"text_query","query":"beyondtrust rs pra command injection","expected_cve_ids":["CVE-2026-1731"]}
+{"id":"gen_case_016","scenario":"text_query","query":"google chrome visuals use-after-free","expected_cve_ids":["CVE-2024-4671"]}
+{"id":"gen_case_017","scenario":"text_query","query":"chromium css use-after-free","expected_cve_ids":["CVE-2026-2441"]}
+{"id":"gen_case_018","scenario":"text_query","query":"google chrome webaudio use-after-free","expected_cve_ids":["CVE-2024-0224"]}
+{"id":"gen_case_019","scenario":"text_query","query":"google chrome webgpu use-after-free","expected_cve_ids":["CVE-2024-0225"]}
+{"id":"gen_case_020","scenario":"text_query","query":"oracle weblogic remote deserialization","expected_cve_ids":["CVE-2024-20927","CVE-2024-20931","CVE-2024-20986"]}
+{"id":"gen_case_021","scenario":"no_hit","query":"CVE-1999-0000","expected_cve_ids":[]}
+{"id":"gen_case_022","scenario":"no_hit","query":"что за CVE-1999-0000 и что делать","expected_cve_ids":[]}
+{"id":"gen_case_023","scenario":"no_hit","query":"какая-то несуществующая уязвимость blabla-1234","expected_cve_ids":[]}
+{"id":"gen_case_024","scenario":"no_hit","query":"ничего не найдено по imaginary cve","expected_cve_ids":[]}
+{"id":"gen_case_025","scenario":"no_hit","query":"несуществующая chromium zero day qqq-9999","expected_cve_ids":[]}
+{"id":"gen_case_026","scenario":"no_hit","query":"неизвестная уязвимость в beyondtrust rs xyz","expected_cve_ids":[]}
+{"id":"gen_case_027","scenario":"no_hit","query":"CVE-2099-99999","expected_cve_ids":[]}
+{"id":"gen_case_028","scenario":"no_hit","query":"CVE-2026-17311","expected_cve_ids":[]}
+{"id":"gen_case_029","scenario":"no_hit","query":"oracle weblogic invisible quantum deserialization exploit","expected_cve_ids":[]}
+{"id":"gen_case_030","scenario":"no_hit","query":"wordpress plugin ghost sql injection 000x","expected_cve_ids":[]}

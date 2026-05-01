@@ -1,0 +1,14 @@
+{
+  "model": "gemma3:4b",
+  "cases_total": 8,
+  "cases_ok": 8,
+  "cases_error": 0,
+  "retrieval_found_count": 6,
+  "grounded_count": 6,
+  "avg_duration_sec": 49.82,
+  "avg_actions_count": 2.25,
+  "avg_references_count": 2,
+  "output_dir": "runs\\generation_compare_gemma3_4b_20260422_193904",
+  "json_path": "runs\\generation_compare_gemma3_4b_20260422_193904\\generation_results_gemma3_4b.json",
+  "csv_path": "runs\\generation_compare_gemma3_4b_20260422_193904\\manual_scoring_template_gemma3_4b.csv"
+}
