@@ -1,4 +1,4 @@
-from typing import Dict, Any, List, Tuple
+from typing import Dict, Any, List, Tuple, Optional
 import re
 
 from .prompt import build_rag_prompt
@@ -30,6 +30,7 @@ def _dedupe_keep_order(values: List[str]) -> List[str]:
             seen.add(key)
             result.append(key)
     return result
+
 
 def _normalize_free_text(text: str) -> str:
     text = (text or "").lower().strip()
@@ -101,6 +102,7 @@ def _is_action_too_generic(text: str) -> bool:
         return True
 
     return False
+
 
 def _has_hits(fallback_answer: Dict[str, Any]) -> bool:
     items = fallback_answer.get("items", [])
@@ -177,7 +179,6 @@ def _clean_actions(raw_actions: Any, fallback_actions: List[str], has_hits: bool
 
     cleaned = _dedupe_keep_order(cleaned)
 
-    # Убираем почти одинаковые формулировки действий
     final_actions: List[str] = []
     for action in cleaned:
         norm_action = _normalize_free_text(action)
@@ -207,7 +208,7 @@ def _clean_actions(raw_actions: Any, fallback_actions: List[str], has_hits: bool
     return final_actions[:3]
 
 
-def _normalize_cwe_value(value: Any) -> str | None:
+def _normalize_cwe_value(value: Any) -> Optional[str]:
     text = _safe_str(value).upper()
     if CWE_RE.match(text):
         return text
@@ -293,8 +294,14 @@ def _normalize_notes(
     grounded: bool,
     raw_llm_json: Dict[str, Any],
     summary: str,
+    suggested_cve: str = "",
 ) -> str:
     if not has_hits:
+        if suggested_cve:
+            return (
+                "В локальном корпусе не найдено точное совпадение по введённому идентификатору. "
+                "Проверь корректность CVE-ID и повтори запрос."
+            )
         return (
             "Это no-hit сценарий: в локальном корпусе не найдено подтверждённого "
             "релевантного контекста, поэтому ответ не должен интерпретироваться "
@@ -328,7 +335,7 @@ def _normalize_notes(
     if isinstance(raw_llm_json, dict) and raw_llm_json:
         return "Модель вернула частично неполный или спорный ответ, поэтому применена консервативная нормализация."
 
-    return "Ответ собран в консервативном режиме на основе retrieval-контекста."    
+    return "Ответ собран в консервативном режиме на основе retrieval-контекста."
 
 
 def normalize_llm_answer(llm_json: Dict[str, Any], fallback_answer: Dict[str, Any]) -> Dict[str, Any]:
@@ -338,6 +345,7 @@ def normalize_llm_answer(llm_json: Dict[str, Any], fallback_answer: Dict[str, An
     fallback_refs = top.get("references") if isinstance(top.get("references"), list) else []
     fallback_cwe = top.get("cwe") if isinstance(top.get("cwe"), dict) else {}
     fallback_kev = bool(top.get("kev"))
+    suggested_cve = _safe_str(fallback_answer.get("suggested_cve"))
 
     fallback_actions = _extract_fallback_actions(top, fallback_kev)
 
@@ -347,14 +355,26 @@ def normalize_llm_answer(llm_json: Dict[str, Any], fallback_answer: Dict[str, An
     cwe = _normalize_cwe(llm_json.get("cwe"), fallback_cwe, has_hits)
     references = _normalize_references(llm_json.get("references"), fallback_refs, has_hits)
     actions = _clean_actions(llm_json.get("actions"), fallback_actions, has_hits)
-    notes = _normalize_notes(llm_json.get("notes"), has_hits, grounded, llm_json, summary)
+    notes = _normalize_notes(llm_json.get("notes"), has_hits, grounded, llm_json, summary, suggested_cve)
 
     if not has_hits:
-        actions = []
         references = []
         kev = False
         cwe = {"primary": None, "top": None}
         grounded = False
+
+        if suggested_cve:
+            summary = (
+                f"Точный идентификатор уязвимости не найден. "
+                f"Возможно, имелся в виду: {suggested_cve}."
+            )
+            notes = (
+                "В локальном корпусе не найдено точное совпадение по введённому идентификатору. "
+                "Проверь корректность CVE-ID и повтори запрос."
+            )
+            actions = ["Проверить корректность введённого CVE-ID и повторить запрос."]
+        else:
+            actions = []
 
     return {
         "summary": summary,
@@ -364,6 +384,7 @@ def normalize_llm_answer(llm_json: Dict[str, Any], fallback_answer: Dict[str, An
         "references": references,
         "grounded": grounded,
         "notes": notes,
+        "suggested_cve": suggested_cve or None,
     }
 
 

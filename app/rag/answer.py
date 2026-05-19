@@ -1,4 +1,4 @@
-from typing import Dict, Any, List, Tuple
+from typing import Dict, Any, List, Tuple, Optional
 
 
 def _build_item(score: float, rec: Dict[str, Any]) -> Dict[str, Any]:
@@ -20,14 +20,29 @@ def _build_item(score: float, rec: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
-def build_answer(query: str, hits: List[Tuple[float, Dict[str, Any]]]) -> Dict[str, Any]:
+def build_answer(
+    query: str,
+    hits: List[Tuple[float, Dict[str, Any]]],
+    suggested_cve: Optional[str] = None,
+) -> Dict[str, Any]:
     if not hits:
+        summary = "По запросу не найден релевантный контекст в локальном корпусе."
+        actions: List[str] = []
+
+        if suggested_cve:
+            summary = (
+                f"Точный идентификатор уязвимости не найден. "
+                f"Возможно, имелся в виду: {suggested_cve}."
+            )
+            actions = ["Проверить корректность введённого CVE-ID и повторить запрос."]
+
         return {
             "query": query,
             "status": "no_hits",
-            "summary": "По запросу не найден релевантный контекст в локальном корпусе.",
-            "actions": [],
+            "summary": summary,
+            "actions": actions,
             "items": [],
+            "suggested_cve": suggested_cve,
         }
 
     items = [_build_item(score, rec) for score, rec in hits]
@@ -57,4 +72,5 @@ def build_answer(query: str, hits: List[Tuple[float, Dict[str, Any]]]) -> Dict[s
         "summary": summary,
         "actions": actions,
         "items": items,
+        "suggested_cve": None,
     }

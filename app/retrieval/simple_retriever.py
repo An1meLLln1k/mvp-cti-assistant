@@ -1,8 +1,10 @@
+import difflib
 import re
-from typing import List, Dict, Any, Tuple, Set
+from typing import List, Dict, Any, Tuple, Set, Optional
 
 WORD_RE = re.compile(r"[A-Za-z0-9\-_]{2,}")
 CVE_RE = re.compile(r"\bCVE-\d{4}-\d{4,7}\b", re.IGNORECASE)
+CVE_LIKE_RE = re.compile(r"\bCVE-\d{4}-[A-Za-z0-9]{3,8}\b", re.IGNORECASE)
 
 GENERIC_TOKENS = {
     "cve", "cwe", "vulnerability", "issue", "bug", "exploit",
@@ -13,7 +15,6 @@ GENERIC_TOKENS = {
     "как", "по", "page", "html"
 }
 
-# Синонимы / алиасы для текстового retrieval
 ALIASES = {
     "chromium": ["chromium", "chrome", "google chrome"],
     "chrome": ["chrome", "chromium", "google chrome"],
@@ -35,7 +36,6 @@ ALIASES = {
     "uaf": ["uaf", "use after free", "use-after-free"],
 }
 
-# Якоря по продукту/вендору. Если есть в запросе, хотя бы один должен попасть в документ.
 ANCHOR_GROUPS = {
     "chromium": {"chromium", "chrome", "google chrome"},
     "chrome": {"chromium", "chrome", "google chrome"},
@@ -45,7 +45,6 @@ ANCHOR_GROUPS = {
     "beyondtrust": {"beyondtrust"},
 }
 
-# Фразы, которые хотим матчить как цельные куски
 PHRASE_ALIASES = {
     "use-after-free": ["use-after-free", "use after free", "uaf"],
     "use after free": ["use-after-free", "use after free", "uaf"],
@@ -74,6 +73,58 @@ def extract_cves(text: str) -> List[str]:
     return [m.group(0).upper() for m in CVE_RE.finditer(text or "")]
 
 
+def extract_cve_like(text: str) -> List[str]:
+    return [m.group(0).upper() for m in CVE_LIKE_RE.finditer(text or "")]
+
+
+def suggest_similar_cve(query: str, records: List[Dict[str, Any]]) -> Optional[str]:
+    strict = extract_cves(query)
+    loose = extract_cve_like(query)
+
+    needle = strict[0] if strict else (loose[0] if loose else "")
+    if not needle:
+        return None
+
+    all_cves = sorted(
+        {
+            (rec.get("cve_id") or "").upper()
+            for rec in records
+            if rec.get("cve_id")
+        }
+    )
+
+    if needle in all_cves:
+        return None
+
+    parts = needle.split("-")
+    if len(parts) < 3:
+        return None
+
+    year = parts[1]
+    suffix = parts[2]
+
+    # Совсем короткий хвост не подсказываем
+    if len(suffix) < 3:
+        return None
+
+    same_year_pool = [c for c in all_cves if c.startswith(f"CVE-{year}-")]
+    if not same_year_pool:
+        return None
+
+    prefix_matches = []
+    for cve in same_year_pool:
+        cve_parts = cve.split("-")
+        if len(cve_parts) >= 3:
+            candidate_suffix = cve_parts[2]
+            if candidate_suffix.startswith(suffix):
+                prefix_matches.append(cve)
+
+    # Подсказку даём только если кандидат ровно один
+    if len(prefix_matches) == 1:
+        return prefix_matches[0]
+
+    return None
+
 def expand_tokens(tokens: List[str]) -> List[str]:
     expanded = []
     for t in tokens:
@@ -100,7 +151,6 @@ def extract_query_phrases(query: str) -> List[str]:
                 phrases.append(normalize_text(base))
                 break
 
-    # эвристика: если в запросе есть use after free по словам, тоже считаем фразой
     if all(x in q_norm for x in ["use", "after", "free"]) and "use after free" not in phrases:
         phrases.append("use after free")
 
@@ -156,8 +206,6 @@ def score_record(
 ) -> Tuple[float, Set[str], Set[str]]:
     search_text = build_search_text(rec)
 
-    # Если в запросе есть anchor (например chromium / wordpress / weblogic),
-    # документ обязан матчинуть хотя бы один из них.
     if q_anchors:
         if not any(match_anchor(anchor, search_text) for anchor in q_anchors):
             return 0.0, set(), set()
@@ -166,7 +214,6 @@ def score_record(
     matched_tokens: Set[str] = set()
     matched_phrases: Set[str] = set()
 
-    # Сначала фразы: это важнее одиночных токенов
     for phrase in q_phrases:
         if normalize_text(phrase) in search_text:
             matched_phrases.add(phrase)
@@ -181,7 +228,6 @@ def score_record(
             else:
                 score += 3.0
 
-    # Потом токены
     for t in q_tokens:
         t_norm = normalize_text(t)
         if t_norm in GENERIC_TOKENS or len(t_norm) < 3:
@@ -196,7 +242,6 @@ def score_record(
                 score += 1.2
             matched_tokens.add(t_norm)
 
-    # Бонус за плотное совпадение
     if len(matched_tokens) >= 2:
         score += 1.5
     if len(matched_tokens) >= 3:
@@ -204,7 +249,6 @@ def score_record(
     if matched_phrases:
         score += 1.5 * len(matched_phrases)
 
-    # Лёгкий бонус за KEV
     if rec.get("kev") is True:
         score += 0.5
 
@@ -214,7 +258,6 @@ def score_record(
 def retrieve(query: str, records: List[Dict[str, Any]], top_k: int = 3) -> List[Tuple[float, Dict[str, Any]]]:
     query_cves = extract_cves(query)
 
-    # 1) Exact match по CVE-ID
     if query_cves:
         exact_hits = []
         qset = set(query_cves)
@@ -224,7 +267,6 @@ def retrieve(query: str, records: List[Dict[str, Any]], top_k: int = 3) -> List[
                 exact_hits.append((100.0, rec))
         return exact_hits[:top_k]
 
-    # 2) Текстовый retrieval
     q_tokens = [t for t in tokenize(query) if t.lower() not in GENERIC_TOKENS]
     q_tokens = expand_tokens(q_tokens)
     q_phrases = extract_query_phrases(query)

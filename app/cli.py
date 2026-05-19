@@ -4,7 +4,7 @@ from datetime import datetime
 
 from .config import DATASET_PATH, RUNS_DIR, TOP_K
 from .io.dataset_loader import load_jsonl
-from .retrieval.simple_retriever import retrieve
+from .retrieval.simple_retriever import retrieve, suggest_similar_cve
 from .rag.answer import build_answer
 from .logging.run_logger import log_run
 from .rag.generate import generate_rag_answer
@@ -55,11 +55,12 @@ def main():
 
     records = load_jsonl(DATASET_PATH)
     hits = retrieve(args.query, records, top_k=args.topk)
+    suggested_cve = suggest_similar_cve(args.query, records) if not hits else None
 
     if args.dump_retrieval:
         print_retrieval_preview(args.query, hits)
 
-    fallback_answer = build_answer(args.query, hits)
+    fallback_answer = build_answer(args.query, hits, suggested_cve=suggested_cve)
 
     rag_result = None
     final_answer = fallback_answer
@@ -98,6 +99,7 @@ def main():
             "retrieval_preview_enabled": args.dump_retrieval,
             "use_llm": args.use_llm,
             "llm_mode": args.llm_mode,
+            "suggested_cve": suggested_cve,
         },
     }
 

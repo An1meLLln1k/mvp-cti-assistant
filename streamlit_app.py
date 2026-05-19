@@ -6,13 +6,13 @@ import streamlit as st
 
 from app.config import DATASET_PATH, TOP_K
 from app.io.dataset_loader import load_jsonl
-from app.retrieval.simple_retriever import retrieve
+from app.retrieval.simple_retriever import retrieve, suggest_similar_cve
 from app.rag.answer import build_answer
 from app.rag.generate import generate_rag_answer
 
 
 CVE_RE = re.compile(r"\bCVE-\d{4}-\d{4,}\b", re.IGNORECASE)
-
+CVE_LIKE_RE = re.compile(r"\bCVE-\d{4}-[A-Za-z0-9]{3,8}\b", re.IGNORECASE)
 
 st.set_page_config(
     page_title="Интеллектуальный ассистент для анализа киберугроз",
@@ -57,7 +57,7 @@ def build_retrieval_table(hits):
 
 
 def detect_query_type(query: str) -> str:
-    return "CVE-ID" if CVE_RE.search(query or "") else "Текстовый"
+    return "CVE-ID" if CVE_LIKE_RE.search(query or "") else "Текстовый"
 
 
 def detect_context_status(hits) -> str:
@@ -66,7 +66,7 @@ def detect_context_status(hits) -> str:
 
 def detect_mode_label(use_llm: bool, hits) -> str:
     if not hits:
-        return "No-hit"
+        return "Ответ без найденного контекста"
     if use_llm:
         return "LLM + корпус"
     return "Без LLM"
@@ -77,22 +77,44 @@ def extract_display_fields(final_answer, fallback_answer, hits):
     Приводит результат к единому виду для отображения
     и в режиме с LLM, и в retrieval-only режиме.
     """
+    suggested_cve = None
+
+    if isinstance(final_answer, dict):
+        suggested_cve = final_answer.get("suggested_cve")
+
+    if not suggested_cve and isinstance(fallback_answer, dict):
+        suggested_cve = fallback_answer.get("suggested_cve")
+
     if not hits:
+        summary = "По запросу не найден релевантный контекст в локальном корпусе."
+        notes = (
+            "Надёжное совпадение в корпусе не найдено. "
+            "Результат не следует трактовать как подтверждённую информацию "
+            "по конкретной уязвимости."
+        )
+        actions = []
+
+        if suggested_cve:
+            summary = (
+                f"Точный идентификатор уязвимости не найден. "
+                f"Возможно, имелся в виду: {suggested_cve}."
+            )
+            notes = (
+                "В локальном корпусе не найдено точное совпадение по введённому идентификатору. "
+                "Проверь корректность CVE-ID и повтори запрос."
+            )
+            actions = ["Проверить корректность введённого CVE-ID и повторить запрос."]
+
         return {
-            "summary": "По запросу не найден релевантный контекст в локальном корпусе.",
-            "actions": [],
+            "summary": summary,
+            "actions": actions,
             "kev": "Нет",
             "grounded": "Нет",
             "cwe_primary": "—",
             "cwe_top": "—",
-            "notes": (
-                "Надёжное совпадение в корпусе не найдено. "
-                "Результат не следует трактовать как подтверждённую информацию "
-                "по конкретной уязвимости."
-            ),
+            "notes": notes,
         }
 
-    # Режим с LLM
     if isinstance(final_answer, dict) and "items" not in final_answer:
         cwe = final_answer.get("cwe") or {}
         return {
@@ -105,7 +127,6 @@ def extract_display_fields(final_answer, fallback_answer, hits):
             "notes": final_answer.get("notes") or "",
         }
 
-    # Retrieval-only fallback
     items = fallback_answer.get("items") or []
     top = items[0] if items else {}
     cwe = top.get("cwe") or {}
@@ -125,6 +146,8 @@ def prettify_notes(notes: str, hits, query_type: str) -> str:
     text = (notes or "").strip()
 
     if not hits:
+        if text:
+            return text
         return (
             "Надёжное совпадение в корпусе не найдено. "
             "Результат не следует трактовать как подтверждённую информацию "
@@ -257,7 +280,8 @@ def main():
     try:
         with st.spinner("Выполняется анализ..."):
             hits = retrieve(query, records, top_k=top_k)
-            fallback_answer = build_answer(query, hits)
+            suggested_cve = suggest_similar_cve(query, records) if not hits else None
+            fallback_answer = build_answer(query, hits, suggested_cve=suggested_cve)
 
             rag_result = None
             final_answer = fallback_answer
